@@ -18,10 +18,17 @@ def collect_data(city_code='506'):
         'active_city_id': f'{city_code}'
     }
 
-    response = requests.get(url='https://comfy.ua/smartfon/brand__apple/', headers=headers, cookies=cookies)
+    # response = requests.get(url='https://comfy.ua/smartfon/brand__apple/', headers=headers, cookies=cookies)
+    #
+    # with open(f'index.html', 'w', encoding='utf-8') as file:
+    #     file.write(response.text)
 
-    with open(f'index.html', 'w', encoding='utf-8') as file:
-        file.write(response.text)
+    with open('index.html') as file:
+        src = file.read()
+
+    soup = BeautifulSoup(src, 'lxml')
+
+    city = soup.find()
 
 def main():
     collect_data(city_code='506')
