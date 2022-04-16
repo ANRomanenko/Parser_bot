@@ -23,12 +23,29 @@ def collect_data(city_code='506'):
     # with open(f'index.html', 'w', encoding='utf-8') as file:
     #     file.write(response.text)
 
-    with open('index.html') as file:
+    with open('index.html', encoding='utf-8') as file:
         src = file.read()
 
     soup = BeautifulSoup(src, 'lxml')
 
-    city = soup.find()
+    city = soup.find('span', class_='header-top__city-name icon-comfy header-top__more-icon').get_text(strip=True)
+    cards = soup.find_all('div', class_='products-list-item products-catalog-grid__item products-list-item--grid')
+    # print(city, len(cards))
+
+    for card in cards:
+        card_title = card.find('a', class_='products-list-item__name').get_text(strip=True)
+
+        try:
+            card_discount = card.find('span', class_='products-list-item__actions-price-discount').get_text(strip=True)
+        except AttributeError:
+            continue
+
+        price_old = card.find('div', class_='products-list-item__actions-price-old').get_text(strip=True).strip('span')
+
+        # description = card.find('div', class_='list-item__specifications-text').get_text(strip=True).replace('iPhone 13', ' ').replace('• 09.2021', ' ').replace('• Модель з лінійки ', ' ').strip()
+
+
+        print(price_old)
 
 def main():
     collect_data(city_code='506')
