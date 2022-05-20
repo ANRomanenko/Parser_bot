@@ -33,8 +33,8 @@ def collect_data(city_code='506'): # Принимает параметер ко�
     cards = soup.find_all('div', class_='products-list-item products-catalog-grid__item products-list-item--grid')
     # print(city, len(cards))
 
-    with open(f'{city}_{cur_time}.csv', 'w', encoding='utf-32') as file:
-        writer = csv.writer(file, delimiter=';')
+    with open(f'{city}_{cur_time}.csv', 'w', encoding='utf-16') as file:
+        writer = csv.writer(file, delimiter='\t')
 
         writer.writerow(
             (
@@ -60,8 +60,8 @@ def collect_data(city_code='506'): # Принимает параметер ко�
 
         # print(price_current)
 
-        with open(f'{city}_{cur_time}.csv', 'a', encoding='utf-32') as file:
-            writer = csv.writer(file, delimiter=';')
+        with open(f'{city}_{cur_time}.csv', 'a', encoding='utf-16') as file:
+            writer = csv.writer(file, delimiter='\t')
 
             writer.writerow(
                 (
