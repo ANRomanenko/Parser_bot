@@ -53,7 +53,7 @@ def collect_data(city_code='506'): # Принимает параметер ко�
         except AttributeError:
             continue
 
-        price_old = card.find('div', class_='products-list-item__actions-price-old').get_text(strip=True) # Старая цена
+        price_old = card.find(class_='products-list-item__actions-price-old').get_text(strip=True)[0:6] # Старая цена
         price_current = card.find('div', class_='products-list-item__actions-price-current').get_text(strip=True).replace('₴', '') # Новая цена
 
         # description = card.find('div', class_='list-item__specifications-text').get_text(strip=True).replace('iPhone 13', ' ').replace('• 09.2021', ' ').replace('• Модель з лінійки ', ' ').strip()

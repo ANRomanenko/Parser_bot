@@ -40,7 +40,7 @@ async def collect_data(city_code='506'): # Принимает параметер
             except AttributeError:
                 continue
 
-            price_old = card.find('div', class_='products-list-item__actions-price-old').get_text(strip=True) # Старая цена
+            price_old = card.find('div', class_='products-list-item__actions-price-old').get_text(strip=True)[0:6] # Старая цена
             price_current = card.find('div', class_='products-list-item__actions-price-current').get_text(strip=True).replace('₴', '') # Новая цена
             # print(price_current)
 
